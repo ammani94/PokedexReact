@@ -1,52 +1,19 @@
 import React, { Component } from 'react';
-import { FlatList, ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View } from 'react-native';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
+import HomeScreen from './views/HomeScreen';
+import PokemonDetails from './views/PokemonDetails';
 
-export default class App extends Component {
+const AppNavigator = createStackNavigator({
+  Home: {screen: HomeScreen},
+  Pokemon: {screen: PokemonDetails},
+});
 
-  constructor(props){
-    super(props);
-    this.state ={ isLoading: true}
+export default createAppContainer(AppNavigator);
+
+class App extends Component {
+  render() {
+    return <RootStack />;
   }
-
-  componentDidMount(){
-    return fetch('https://pokeapi.co/api/v2/pokemon/')
-      .then((response) => response.json())
-      .then((responseJson) => {
-
-        this.setState({
-          isLoading: false,
-          dataSource: responseJson.results,
-        }, function(){
-
-        });
-
-      })
-      .catch((error) =>{
-        console.error(error);
-      });
-  }
-
-
-
-  render(){
-
-    if(this.state.isLoading){
-      return(
-        <View style={{flex: 1, padding: 20}}>
-          <ActivityIndicator/>
-        </View>
-      )
-    }
-
-    return(
-      <View style={{flex: 1, paddingTop:20}}>
-        <FlatList
-          data={this.state.dataSource}
-          renderItem={({item}) => <Text>{item.name}</Text>}
-          keyExtractor={({id}, index) => id}
-        />
-      </View>
-    );
-  }
-
 }
+
