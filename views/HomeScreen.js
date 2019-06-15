@@ -28,7 +28,7 @@ class HomeScreen extends Component {
       render(){
         if(this.state.isLoading){
           return(
-            <View style={{flex: 1, padding: 20}}>
+            <View style={{padding: 20}}>
               <ActivityIndicator size="large" color="#0000ff"/>
             </View>
           )

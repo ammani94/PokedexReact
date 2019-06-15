@@ -14,6 +14,12 @@ const styles = StyleSheet.create({
     alignSelf:'center',
     marginTop: 30,
   },
+  display_image: {
+    backgroundColor: 'grey',
+    alignSelf:'center',
+    width: 100,
+  },
+
 });
 
 class PokemonDetails extends Component {
@@ -29,7 +35,6 @@ class PokemonDetails extends Component {
       return fetch(newurl)
         .then((response) => response.json())
         .then((responseJson) => {
-          console.log(responseJson.abilities);
           this.setState({
             isLoading: false,
             PokemonName: responseJson.name,
@@ -53,7 +58,7 @@ class PokemonDetails extends Component {
       if(this.state.isLoading){
         return(
           <View style={{flex: 1, padding: 20}}>
-            <ActivityIndicator/>
+            <ActivityIndicator size="large" color="#0000ff"/>
           </View>
         )
       }
@@ -63,18 +68,37 @@ class PokemonDetails extends Component {
       };
         
       return(
-            <View style={{flex: 1, paddingTop:20}}>
-              <Text style={styles.text_center_bottom}>{this.state.PokemonName} n°{this.state.PokemonId}</Text>
-              <Image source={pic} style={{width: 193, height: 160, alignSelf: 'center'}} />
-
-              <Text style={styles.text_center_bottom}>Stats</Text>
-              <FlatList style={{borderColor:'black'}}
-              data={this.state.PokemonStats}
-              renderItem={({item}) => 
-              <Text style={styles.text_center}>{item.stat.name} : {item.base_stat}</Text>}
-              keyExtractor={({id}, index) => id}
-            />
+            <View style={{flex: 1, paddingTop:10}}>
+              <View>
+                <Text style={styles.text_center_bottom}>{this.state.PokemonName} n°{this.state.PokemonId}</Text>
+                <Image source={pic} style={{width: 193, height: 160, alignSelf: 'center'}} />
+              </View>
               
+              <View style={{flex: 2, paddingTop:20, flexDirection:'row'}}>
+                <View style={{flex: 1, height:150, marginLeft:20}}>
+                  <Text style={{marginBottom: 20}}>Stats</Text>
+                  <FlatList
+                  data={this.state.PokemonStats}
+                  renderItem={({item}) => 
+                  <Text style={{}}>{item.stat.name} : {item.base_stat}</Text>}
+                  keyExtractor={({id}, index) => id}
+                  />
+                </View>
+
+                <View style={{flex: 1, height:150, marginLeft:20}}>
+                
+                  <Text style={{marginBottom: 20}}>Abilities</Text>
+                  {/* <View style={{borderBottomColor: 'black', borderBottomWidth: 1}}></View> */}
+                  <FlatList 
+                  data={this.state.PokemonAbilities}
+                  renderItem={({item}) => 
+                  <Text>{item.ability.name}</Text>}
+                  keyExtractor={({id}, index) => id}
+              />
+                </View>
+
+              </View>
+
             </View>
       );
         
