@@ -9,6 +9,8 @@ const styles = StyleSheet.create({
   text_center_bottom: {
     alignSelf:'center',
     marginBottom: 20,
+    color:'white',
+    fontWeight:'bold'
   },
   text_center_top: {
     alignSelf:'center',
@@ -68,31 +70,39 @@ class PokemonDetails extends Component {
       };
         
       return(
-            <View style={{flex: 1, paddingTop:10}}>
-              <View>
+            <View style={{flex: 1, paddingTop:0}}>
+              <View style={{backgroundColor:'black'}}>
                 <Text style={styles.text_center_bottom}>{this.state.PokemonName} n°{this.state.PokemonId}</Text>
                 <Image source={pic} style={{width: 193, height: 160, alignSelf: 'center'}} />
               </View>
               
               <View style={{flex: 2, paddingTop:20, flexDirection:'row'}}>
                 <View style={{flex: 1, height:150, marginLeft:20}}>
-                  <Text style={{marginBottom: 20}}>Stats</Text>
+                  <Text style={{marginBottom: 20, color:'grey', fontWeight:'bold'}}>Stats</Text>
                   <FlatList
                   data={this.state.PokemonStats}
-                  renderItem={({item}) => 
-                  <Text style={{}}>{item.stat.name} : {item.base_stat}</Text>}
+                  renderItem={({item}) =>
+                  <View style={{borderBottomColor: 'grey', borderBottomWidth: 1, marginRight:10, marginTop:10}}>
+                    <Text style={{}}>{item.stat.name} : {item.base_stat}</Text>
+
+                  </View>
+                  }
                   keyExtractor={({id}, index) => id}
                   />
                 </View>
 
                 <View style={{flex: 1, height:150, marginLeft:20}}>
                 
-                  <Text style={{marginBottom: 20}}>Abilities</Text>
+                  <Text style={{marginBottom: 20, color:'grey', fontWeight:'bold'}}>Abilities</Text>
                   {/* <View style={{borderBottomColor: 'black', borderBottomWidth: 1}}></View> */}
                   <FlatList 
                   data={this.state.PokemonAbilities}
                   renderItem={({item}) => 
-                  <Text>{item.ability.name}</Text>}
+                  <View style={{borderBottomColor: 'grey', borderBottomWidth: 1, marginRight:10, marginTop:10}}>
+                    <Text>{item.ability.name}</Text>
+
+                  </View>
+                  }
                   keyExtractor={({id}, index) => id}
               />
                 </View>

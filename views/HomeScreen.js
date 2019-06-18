@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, ActivityIndicator, StyleSheet, Text, View, Button } from 'react-native';
+import { FlatList, ActivityIndicator, StyleSheet, Text, View, Button, Image } from 'react-native';
 import {createStackNavigator, createAppContainer, StackActions, NavigationActions} from 'react-navigation';
 
 class HomeScreen extends Component {
@@ -35,8 +35,12 @@ class HomeScreen extends Component {
         }
     
         return(
-          <View style={{flex: 1, paddingTop:40}}>
-            <FlatList style={{borderColor:'black'}}
+          <View style={{flex: 1, paddingTop:0}}>
+            <View style={{backgroundColor:'#ef5350', alignItems:'center',justifyContent: 'center',}}>
+              {/* <Text style={{color:'white', alignItems:'center',justifyContent: 'center', fontWeight:'bold'}}>Pokedex</Text> */}
+              <Image style={{height:90}} source={require('../assets/logo-pokemon.png')} />
+            </View>
+            <FlatList style={{marginTop:10}}
               data={this.state.dataSource}
               renderItem={({item}) => 
               <Button
