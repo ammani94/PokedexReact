@@ -9,7 +9,7 @@ class HomeScreen extends Component {
         this.state ={ isLoading: true}
       }
       componentDidMount(){
-        return fetch('https://pokeapi.co/api/v2/pokemon/')
+        return fetch('https://pokeapi.co/api/v2/pokemon/?limit=365')
           .then((response) => response.json())
           .then((responseJson) => {
             this.setState({
@@ -42,7 +42,7 @@ class HomeScreen extends Component {
             </View>
             <FlatList style={{marginTop:10}}
               data={this.state.dataSource}
-              renderItem={({item}) => 
+              renderItem={({item}) =>
               <Button
           title={item.name}
           onPress={ () => {this.props.navigation.navigate('Pokemon', {
