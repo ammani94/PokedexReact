@@ -10,5 +10,5 @@ https://pokeapi.co/
 
 ## Screenshot
 
-![alt text](https://github.com/ammani94/Pokedex/blob/master/src/assets/Screenshot1.png)
-![alt text](https://github.com/ammani94/Pokedex/blob/master/src/assets/Screenshot2.png)
+![alt text](https://github.com/ammani94/PokedexReact/tree/master/assets/Screenshot1.png)
+![alt text](https://github.com/ammani94/PokedexReact/tree/master/assets/Screenshot2.png)
